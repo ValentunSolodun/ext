@@ -1,7 +1,7 @@
 const PANEL_CONFIG = {
   title: 'XHRinfo',
   iconPath: '',
-  pagePath: 'panel/index.html'
+  pagePath: 'app/build/index.html'
 };
 
 (function createNewPanel() {
