@@ -37,7 +37,12 @@ const XHRItem = (props) => {
   const url = _.get(log, 'request.url');
   const status = _.get(log, 'response.status');
   const responseBody = _.get(log, 'responseBody');
-  const postData = JSON.parse(_.get(log, 'request.postData.text', "{}"));
+  const mimeType = _.get(log, 'request.postData.mimeType', '');
+  let postData = '';
+
+  if(mimeType.indexOf('application/json') !== -1) {
+    postData = JSON.parse(_.get(log, 'request.postData.text', "{}"));
+  }
 
   return (
     <Grid item xs={12}>

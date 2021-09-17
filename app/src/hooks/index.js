@@ -7,14 +7,19 @@ export const useNetworkLogs = () => {
   const onRequestFinished = _.get(window, 'chrome.devtools.network.onRequestFinished');
 
   const handleOnCallBack = async (request) => {
-    console.log('request received:', request);
+    // console.log('request received:', request);
     const data = {
       ...request,
     };
 
     data.responseBody = await new Promise(resolve => {
       request.getContent((c, e) => {
-        resolve(JSON.parse(c));
+        try {
+          const parsedContent = JSON.parse(c);
+          resolve(parsedContent);
+        } catch (e) {
+          resolve(c);
+        }
       });
     });
     setLogs(prevState => ([...prevState, data]));
