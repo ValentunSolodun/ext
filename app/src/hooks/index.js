@@ -56,5 +56,5 @@ export const useNetworkLogs = () => {
     return () => onRequestFinished.removeListener();
   }, [onRequestFinished]);
 
-  return _.filter(logs, (l) => l._resourceType === 'xhr');
+  return {logs: _.filter(logs, (l) => l._resourceType === 'xhr'), clear: () => setLogs([])};
 };

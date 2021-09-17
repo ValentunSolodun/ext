@@ -714,5 +714,5 @@ export const TEST_RESPONSE = {
     "length": 8
   }
 };
-export const DEV_DELAY = 1000;
-export const MAX_LOGS_TO_SAVE = 5;
+export const DEV_DELAY = 5000;
+export const MAX_LOGS_TO_SAVE = 500;

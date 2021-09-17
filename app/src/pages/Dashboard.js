@@ -7,6 +7,7 @@ import {useNetworkLogs} from '../hooks';
 import _ from 'lodash';
 import syntaxHighlight from '../helpers';
 import Pre from "../components/Pre";
+import Button from "@material-ui/core/Button";
 
 const PaperContainer = withStyles({
   root: {
@@ -14,12 +15,21 @@ const PaperContainer = withStyles({
   }
 })(Paper);
 
+const ButtonClear = withStyles({
+  root: {
+    position: 'fixed',
+    left: 10,
+    top: 10
+  }
+})(Button);
+
 const Dashboard = () => {
 
-  const logs = useNetworkLogs();
+  const {logs, clear} = useNetworkLogs();
   console.log(logs);
   return (
-    <Grid container style={{padding: 20}} spacing={2}>
+    <Grid container style={{padding: '60px 20px 20px 20px'}} spacing={2}>
+      <ButtonClear variant='contained' color='primary' onClick={clear}>Clear</ButtonClear>
       {
         _.map(logs, l => {
           const connection = _.get(l, 'connection');
