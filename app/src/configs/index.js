@@ -3,6 +3,13 @@ import {createTheme} from '@mui/material';
 export const theme = createTheme({
   typography: {},
   components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          wordBreak: 'break-word'
+        }
+      }
+    },
     MuiButton: {
       styleOverrides: {
         root: {
@@ -16,10 +23,10 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#cb5211',
+      main: '#4e4747',
     },
     secondary: {
-      main: '#11cb5f',
+      main: '#dadada',
     },
   },
 });

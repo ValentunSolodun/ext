@@ -6,6 +6,7 @@ import {withStyles} from '@material-ui/styles';
 import {useNetworkLogs} from '../hooks';
 import _ from 'lodash';
 import syntaxHighlight from '../helpers';
+import Pre from "../components/Pre";
 
 const PaperContainer = withStyles({
   root: {
@@ -21,8 +22,9 @@ const Dashboard = () => {
     <Grid container style={{padding: 20}} spacing={2}>
       {
         _.map(logs, l => {
+          const connection = _.get(l, 'connection');
           return (
-            <XHRItem log={l}/>
+            <XHRItem key={connection} log={l}/>
           )
         })
       }
@@ -47,39 +49,39 @@ const XHRItem = (props) => {
   return (
     <Grid item xs={12}>
       <PaperContainer>
-        <Grid container xs={12}>
+        <Grid container item xs={12}>
           <Grid item xs={12}>
-            <Typography color='primary' variant='body1'>Method: {method}</Typography>
+            <Typography color='primary' variant='body1'><b>METHOD:</b> {method}</Typography>
           </Grid>
         </Grid>
         <Grid container xs={12}>
           <Grid item xs={12}>
-            <Typography color='primary' variant='body1'>Url: {url}</Typography>
+            <Typography color='primary' variant='body1'><b>URL:</b> {url}</Typography>
           </Grid>
         </Grid>
         <Grid container xs={12}>
           <Grid item xs={12}>
-            <Typography color='primary' variant='body1'>Status: {status}</Typography>
+            <Typography color='primary' variant='body1'><b>STATUS:</b> {status}</Typography>
           </Grid>
         </Grid>
         {
           !!!_.isEmpty(postData) && (
             <Grid container xs={12}>
               <Grid item xs={12}>
-                <Typography color='primary' variant='body1'>Request data:</Typography>
+                <Typography color='primary' variant='body1'><b>REQUEST DATA:</b></Typography>
               </Grid>
               <Grid item xs={12}>
-                <pre dangerouslySetInnerHTML={{__html: syntaxHighlight(postData)}}/>
+                <Pre dangerouslySetInnerHTML={{__html: syntaxHighlight(postData)}}/>
               </Grid>
             </Grid>
           )
         }
         <Grid container xs={12}>
           <Grid item xs={12}>
-            <Typography color='primary' variant='body1'>Response data:</Typography>
+            <Typography color='primary' variant='body1'><b>RESPONSE DATA:</b></Typography>
           </Grid>
           <Grid item xs={12}>
-            <pre dangerouslySetInnerHTML={{__html: syntaxHighlight(responseBody)}}/>
+            <Pre dangerouslySetInnerHTML={{__html: syntaxHighlight(responseBody)}}/>
           </Grid>
         </Grid>
       </PaperContainer>
