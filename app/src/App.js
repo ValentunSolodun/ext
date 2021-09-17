@@ -1,23 +1,15 @@
 import './App.css';
 import React from "react";
-import {createTheme, ThemeProvider} from "@mui/material";
-import Button from "./components/Button";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#cb5211',
-    },
-    secondary: {
-      main: '#11cb5f',
-    },
-  },
-});
+import {ThemeProvider} from "@mui/material";
+import {theme} from './configs';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <div className="App">
-        <Button color='primary' variant='outlined'>Test button</Button>
+      <ThemeProvider theme={theme}>
+        <Dashboard/>
+      </ThemeProvider>
     </div>
   );
 }
