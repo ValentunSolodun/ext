@@ -3,11 +3,11 @@ import Typography from '@mui/material/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import {withStyles} from '@material-ui/styles';
-import {useNetworkLogs} from '../hooks';
+import {useNetworkLogs} from '../contexts/useNetworkLogs';
 import _ from 'lodash';
 import syntaxHighlight from '../helpers';
 import Pre from "../components/Pre";
-import Button from "@material-ui/core/Button";
+import Header from "../components/Header";
 
 const PaperContainer = withStyles({
   root: {
@@ -15,29 +15,24 @@ const PaperContainer = withStyles({
   }
 })(Paper);
 
-const ButtonClear = withStyles({
-  root: {
-    position: 'fixed',
-    left: 10,
-    top: 10
-  }
-})(Button);
 
 const Dashboard = () => {
 
-  const {logs, clear} = useNetworkLogs();
+  const {logs} = useNetworkLogs();
   console.log(logs);
   return (
-    <Grid container style={{padding: '60px 20px 20px 20px'}} spacing={2}>
-      <ButtonClear variant='contained' color='primary' onClick={clear}>Clear</ButtonClear>
-      {
-        _.map(logs, l => {
-          const connection = _.get(l, 'connection');
-          return (
-            <XHRItem key={connection} log={l}/>
-          )
-        })
-      }
+    <Grid container xs={12}>
+      <Header/>
+      <Grid item container xs={12} style={{padding: 20}} spacing={2}>
+        {
+          _.map(logs, l => {
+            const connection = _.get(l, 'connection');
+            return (
+              <XHRItem key={connection} log={l}/>
+            )
+          })
+        }
+      </Grid>
     </Grid>
   );
 };
@@ -52,7 +47,7 @@ const XHRItem = (props) => {
   const mimeType = _.get(log, 'request.postData.mimeType', '');
   let postData = '';
 
-  if(mimeType.indexOf('application/json') !== -1) {
+  if (mimeType.indexOf('application/json') !== -1) {
     postData = JSON.parse(_.get(log, 'request.postData.text', "{}"));
   }
 
