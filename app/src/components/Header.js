@@ -10,11 +10,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import _ from 'lodash';
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
-import FormControl from "@material-ui/core/FormControl";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import SearchIcon from '@mui/icons-material/Search';
+import Typography from '@material-ui/core/Typography';
 
 const HeaderContainer = withStyles({
   root: {
@@ -52,7 +48,7 @@ const Header = () => {
         <Grid item style={{marginRight: 20}}>
           <FormGroup>
             <FormControlLabel control={<Switch defaultChecked checked={isXHR} onChange={handleToggleFilter('xhr')}/>}
-                              label="Fetch/XHR"/>
+                              label={<Typography variant='caption'>Fetch/XHR</Typography>}/>
           </FormGroup>
         </Grid>
         {/*<Grid item container alignItems="center" xs>*/}
