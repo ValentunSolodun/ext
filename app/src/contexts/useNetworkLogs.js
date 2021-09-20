@@ -60,7 +60,7 @@ const NetworkLogsProvider = (props) => {
   };
 
   const getFilteredLogs = (logs) => {
-    let filteredLogs = logs;
+    let filteredLogs = [...logs];
     if (!_.isEmpty(resourceTypes)) {
       filteredLogs = _.filter(filteredLogs, l => _.some(resourceTypes, t => t === l._resourceType));
     }
