@@ -30,7 +30,8 @@ const HeaderContainer = withStyles({
 
 const Header = () => {
 
-  const {clear, addFilterByType, removeFilterByType} = useNetworkLogs();
+  const {clear, addFilterByType, removeFilterByType, resourceTypes} = useNetworkLogs();
+  const isXHR = _.includes(resourceTypes, 'xhr');
 
   const handleToggleFilter = (type) => (e) => {
     const checked = _.get(e, 'target.checked');
@@ -50,7 +51,7 @@ const Header = () => {
         </Grid>
         <Grid item style={{marginRight: 20}}>
           <FormGroup>
-            <FormControlLabel control={<Switch defaultChecked onChange={handleToggleFilter('xhr')}/>}
+            <FormControlLabel control={<Switch defaultChecked checked={isXHR} onChange={handleToggleFilter('xhr')}/>}
                               label="Fetch/XHR"/>
           </FormGroup>
         </Grid>

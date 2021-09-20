@@ -84,6 +84,7 @@ const NetworkLogsProvider = (props) => {
   return (
     <NetworkLogsContext.Provider
       value={{
+        resourceTypes,
         addFilterByType,
         removeFilterByType,
         logs: getFilteredLogs(logs),
