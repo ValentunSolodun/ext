@@ -48,6 +48,7 @@ const NetworkLogsProvider = (props) => {
 
   const handleOnClear = () => {
     console.log('clear');
+    console.log('test');
     setLogs([]);
   };
 
