@@ -8,6 +8,11 @@ import _ from 'lodash';
 import syntaxHighlight from '../helpers';
 import Pre from "../components/Pre";
 import Header from "../components/Header";
+import {MAX_LOGS_TO_RENDER, PRIMARY_COLOR} from "../const";
+import Accordion from "@material-ui/core/Accordion";
+import AccordionSummary from "@material-ui/core/AccordionSummary";
+import AccordionDetails from "@material-ui/core/AccordionDetails";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const PaperContainer = withStyles({
   root: {
@@ -15,17 +20,21 @@ const PaperContainer = withStyles({
   }
 })(Paper);
 
+const middlewareRenderLogs = (logs) => {
+  return logs.slice(-MAX_LOGS_TO_RENDER);
+};
 
 const Dashboard = () => {
 
   const {logs} = useNetworkLogs();
   console.log(logs);
+
   return (
     <Grid container xs={12}>
       <Header/>
       <Grid item container xs={12} style={{padding: 20}} spacing={2}>
         {
-          _.map(logs, l => {
+          _.map(middlewareRenderLogs(logs), l => {
             const connection = _.get(l, 'connection');
             return (
               <XHRItem key={connection} log={l}/>
@@ -53,45 +62,95 @@ const XHRItem = (props) => {
 
   return (
     <Grid item xs={12}>
-      <PaperContainer>
-        <Grid container item xs={12}>
-          <Grid item xs={12}>
-            <Typography color='primary' variant='body1'><b>METHOD:</b> {method}</Typography>
-          </Grid>
-        </Grid>
-        <Grid container xs={12}>
-          <Grid item xs={12}>
-            <Typography color='primary' variant='body1'><b>URL:</b> {url}</Typography>
-          </Grid>
-        </Grid>
-        <Grid container xs={12}>
-          <Grid item xs={12}>
-            <Typography color='primary' variant='body1'><b>STATUS:</b> {status}</Typography>
-          </Grid>
-        </Grid>
-        {
-          !!!_.isEmpty(postData) && (
-            <Grid container xs={12}>
-              <Grid item xs={12}>
-                <Typography color='primary' variant='body1'><b>REQUEST DATA:</b></Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Pre dangerouslySetInnerHTML={{__html: syntaxHighlight(postData)}}/>
-              </Grid>
+      <Accordion TransitionProps={{unmountOnExit: true}}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon style={{fill: PRIMARY_COLOR}}/>}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          {/*<Grid container item xs={12}>*/}
+          {/*  <Grid item xs={12}>*/}
+          {/*    <Typography color='primary' variant='body1'><b>METHOD:</b> {method}</Typography>*/}
+          {/*  </Grid>*/}
+          {/*</Grid>*/}
+          <Grid container xs={12}>
+            <Grid item xs={12}>
+              <Typography color='primary' variant='body1'><b>({method}:{status}) URL:</b> {url}</Typography>
             </Grid>
-          )
-        }
-        <Grid container xs={12}>
-          <Grid item xs={12}>
-            <Typography color='primary' variant='body1'><b>RESPONSE DATA:</b></Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Pre dangerouslySetInnerHTML={{__html: syntaxHighlight(responseBody)}}/>
+          {/*<Grid container xs={12}>*/}
+          {/*  <Grid item xs={12}>*/}
+          {/*    <Typography color='primary' variant='body1'><b>STATUS:</b> {status}</Typography>*/}
+          {/*  </Grid>*/}
+          {/*</Grid>*/}
+        </AccordionSummary>
+        <AccordionDetails>
+          {
+            !!!_.isEmpty(postData) && (
+              <Grid container xs={12}>
+                <Grid item xs={12}>
+                  <Typography color='primary' variant='body1'><b>REQUEST DATA:</b></Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <Pre dangerouslySetInnerHTML={{__html: syntaxHighlight(postData)}}/>
+                </Grid>
+              </Grid>
+            )
+          }
+          <Grid container xs={12}>
+            <Grid item xs={12}>
+              <Typography color='primary' variant='body1'><b>RESPONSE DATA:</b></Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <Pre dangerouslySetInnerHTML={{__html: syntaxHighlight(responseBody)}}/>
+            </Grid>
           </Grid>
-        </Grid>
-      </PaperContainer>
+        </AccordionDetails>
+      </Accordion>
     </Grid>
   )
+
+  // return (
+  //   <Grid item xs={12}>
+  //     <PaperContainer>
+  //       <Grid container item xs={12}>
+  //         <Grid item xs={12}>
+  //           <Typography color='primary' variant='body1'><b>METHOD:</b> {method}</Typography>
+  //         </Grid>
+  //       </Grid>
+  //       <Grid container xs={12}>
+  //         <Grid item xs={12}>
+  //           <Typography color='primary' variant='body1'><b>URL:</b> {url}</Typography>
+  //         </Grid>
+  //       </Grid>
+  //       <Grid container xs={12}>
+  //         <Grid item xs={12}>
+  //           <Typography color='primary' variant='body1'><b>STATUS:</b> {status}</Typography>
+  //         </Grid>
+  //       </Grid>
+  //       {
+  //         !!!_.isEmpty(postData) && (
+  //           <Grid container xs={12}>
+  //             <Grid item xs={12}>
+  //               <Typography color='primary' variant='body1'><b>REQUEST DATA:</b></Typography>
+  //             </Grid>
+  //             <Grid item xs={12}>
+  //               <Pre dangerouslySetInnerHTML={{__html: syntaxHighlight(postData)}}/>
+  //             </Grid>
+  //           </Grid>
+  //         )
+  //       }
+  //       <Grid container xs={12}>
+  //         <Grid item xs={12}>
+  //           <Typography color='primary' variant='body1'><b>RESPONSE DATA:</b></Typography>
+  //         </Grid>
+  //         <Grid item xs={12}>
+  //           <Pre dangerouslySetInnerHTML={{__html: syntaxHighlight(responseBody)}}/>
+  //         </Grid>
+  //       </Grid>
+  //     </PaperContainer>
+  //   </Grid>
+  // )
 };
 
 export default Dashboard;

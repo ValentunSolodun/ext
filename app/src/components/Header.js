@@ -11,6 +11,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import _ from 'lodash';
 import Typography from '@material-ui/core/Typography';
+import {MAIN_BACKGROUND, PRIMARY_COLOR} from "../const";
 
 const HeaderContainer = withStyles({
   root: {
@@ -19,8 +20,9 @@ const HeaderContainer = withStyles({
     top: 0,
     height: 70,
     width: '100%',
-    // background: 'red',
-    borderRadius: 0
+    background: MAIN_BACKGROUND,
+    borderRadius: 0,
+    zIndex: 1
   }
 })(Paper);
 
@@ -41,14 +43,14 @@ const Header = () => {
         <Grid item style={{marginRight: 20}}>
           <Tooltip title="Clear all">
             <IconButton aria-label="delete" onClick={clear}>
-              <DeleteIcon/>
+              <DeleteIcon style={{fill: PRIMARY_COLOR}}/>
             </IconButton>
           </Tooltip>
         </Grid>
         <Grid item style={{marginRight: 20}}>
           <FormGroup>
             <FormControlLabel control={<Switch defaultChecked checked={isXHR} onChange={handleToggleFilter('xhr')}/>}
-                              label={<Typography variant='caption'>Fetch/XHR</Typography>}/>
+                              label={<Typography color='primary' variant='caption'>Fetch/XHR</Typography>}/>
           </FormGroup>
         </Grid>
         {/*<Grid item container alignItems="center" xs>*/}

@@ -8,7 +8,7 @@ export const useNetworkLogs = () => useContext(NetworkLogsContext);
 
 const NetworkLogsProvider = (props) => {
   const [logs, setLogs] = useState([]);
-  const [resourceTypes, setResourceTypes] = useState([]);
+  const [resourceTypes, setResourceTypes] = useState(['xhr']);
   const onRequestFinished = _.get(window, 'chrome.devtools.network.onRequestFinished');
 
   const handleOnCallBack = async (request) => {
@@ -48,7 +48,6 @@ const NetworkLogsProvider = (props) => {
 
   const handleOnClear = () => {
     console.log('clear');
-    console.log('test');
     setLogs([]);
   };
 

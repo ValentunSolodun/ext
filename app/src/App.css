@@ -7,7 +7,7 @@
 }
 
 .boolean {
-    color: blue;
+    color: var(--primaty-color);
 }
 
 .null {
@@ -15,5 +15,5 @@
 }
 
 .key {
-    color: red;
+    color: #ffffff;
 }

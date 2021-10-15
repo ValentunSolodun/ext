@@ -1,8 +1,21 @@
 import {createTheme} from '@mui/material';
+import {MAIN_BACKGROUND, PRIMARY_COLOR} from "../const";
 
 export const theme = createTheme({
-  typography: {},
+  typography: {
+    body1: {
+      fontSize: 13,
+    },
+  },
   components: {
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          border: `1px solid ${PRIMARY_COLOR}`,
+          background: MAIN_BACKGROUND
+        }
+      }
+    },
     MuiTypography: {
       styleOverrides: {
         root: {
@@ -23,7 +36,7 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#4e4747',
+      main: PRIMARY_COLOR,
     },
     secondary: {
       main: '#dadada',

@@ -715,4 +715,7 @@ export const TEST_RESPONSE = {
   }
 };
 export const DEV_DELAY = 5000;
-export const MAX_LOGS_TO_SAVE = 500;
+export const MAX_LOGS_TO_RENDER = 100;
+
+export const MAIN_BACKGROUND = '#282c34';
+export const PRIMARY_COLOR = '#61dafb';
