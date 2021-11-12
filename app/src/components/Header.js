@@ -12,6 +12,7 @@ import Switch from "@material-ui/core/Switch";
 import _ from 'lodash';
 import Typography from '@material-ui/core/Typography';
 import {MAIN_BACKGROUND, PRIMARY_COLOR} from "../const";
+import Button from '../shared/src/components/Button';
 
 const HeaderContainer = withStyles({
   root: {
@@ -53,6 +54,7 @@ const Header = () => {
                               label={<Typography color='primary' variant='caption'>Fetch/XHR</Typography>}/>
           </FormGroup>
         </Grid>
+        <Button />
         {/*<Grid item container alignItems="center" xs>*/}
         {/*  <Grid item>*/}
         {/*    <FormControl variant="standard">*/}
