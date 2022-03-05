@@ -13,6 +13,7 @@ import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Version from '../components/Version';
 
 const PaperContainer = withStyles({
   root: {
@@ -31,6 +32,7 @@ const Dashboard = () => {
 
   return (
     <Grid container xs={12}>
+      <Version/>
       <Header/>
       <Grid item container xs={12} style={{padding: 20}} spacing={2}>
         {

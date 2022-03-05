@@ -48,7 +48,7 @@ const NetworkLogsProvider = (props) => {
 
   const handleOnClear = () => {
     console.log('clear');
-    setLogs([]);
+    setLogs(() => []);
   };
 
   const addFilterByType = (type) => {

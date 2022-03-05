@@ -719,3 +719,4 @@ export const MAX_LOGS_TO_RENDER = 100;
 
 export const MAIN_BACKGROUND = '#282c34';
 export const PRIMARY_COLOR = '#61dafb';
+export const APP_VERSION = '1.1';
