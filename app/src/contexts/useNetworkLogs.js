@@ -1,6 +1,6 @@
-import React, {createContext, useContext, useEffect, useState} from "react";
-import _ from "lodash";
-import {DEV_DELAY, isDev, TEST_RESPONSE} from "../const";
+import React, {createContext, useContext, useEffect, useState} from 'react';
+import _ from 'lodash';
+import {DEV_DELAY, isDev, TEST_RESPONSE} from '../const';
 
 const NetworkLogsContext = createContext();
 
@@ -32,13 +32,7 @@ const NetworkLogsProvider = (props) => {
 
   const setNewRequest = request => {
     setLogs(prevState => {
-      const newState = [...prevState, request];
-      // const length = _.get(newState, 'length');
-      // if(length > MAX_LOGS_TO_SAVE) {
-      //   return newState.slice(-MAX_LOGS_TO_SAVE);
-      // }
-
-      return newState;
+      return [...prevState, request];
     });
   };
 
@@ -73,7 +67,7 @@ const NetworkLogsProvider = (props) => {
         handleSpamLogs();
       }, DEV_DELAY);
     }
-  }, []);
+  }, [onRequestFinished]);
 
   useEffect(() => {
     if (!onRequestFinished) return;
