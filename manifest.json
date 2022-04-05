@@ -1,10 +1,10 @@
 {
   "name": "XHRinfo",
   "description": "Get presentable info about network log resources",
-  "version": "1.0",
+  "version": "1.1",
   "manifest_version": 2,
   "browser_action": {
-    "default_popup": "index.html",
+    "default_popup": "popup.html",
     "default_title": "XHRinfo"
   },
   "icons": {
@@ -12,12 +12,8 @@
     "48": "logo192.png",
     "128": "logo192.png"
   },
-  "content_security_policy": "script-src 'self' 'sha256-B4tNbrv4DH8epxAc77lXQzb8jqeUkuqwoNLxawppUyw='; object-src 'self'",
   "permissions": [
     "debugger"
   ],
-  "devtools_page": "devtools.html",
-  "background": {
-    "scripts": ["background.js"]
-  }
+  "devtools_page": "devtools.html"
 }
