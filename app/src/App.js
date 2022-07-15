@@ -5,6 +5,8 @@ import {theme} from './configs';
 import Dashboard from './pages/Dashboard';
 import NetworkLogsProvider from "./contexts/useNetworkLogs";
 
+console.log(1);
+
 function App() {
   return (
     <div className="App">
